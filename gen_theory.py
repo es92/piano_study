@@ -1,6 +1,8 @@
 import genanki
 import random
 from shared import *
+from mingus.containers import Bar
+import mingus.extra.lilypond as LilyPond
 
 def main():
 
@@ -16,18 +18,29 @@ def main():
   where_to_find('major', major_scale, chord_types[2:7], 1)
   where_to_find('major', major_scale, chord_types[7:], 1)
 
-  where_to_find('natural_minor', major_scale, chord_types[0:2], 3)
-  where_to_find('natural_minor', major_scale, chord_types[2:7], 3)
-  where_to_find('natural_minor', major_scale, chord_types[7:], 3)
+  where_to_find('natural_minor', natural_minor_scale, chord_types[0:2], 3)
+  where_to_find('natural_minor', natural_minor_scale, chord_types[2:7], 3)
+  where_to_find('natural_minor', natural_minor_scale, chord_types[7:], 3)
 
-  where_to_find('harmonic_minor', major_scale, chord_types[0:2], 5)
-  where_to_find('harmonic_minor', major_scale, chord_types[2:7], 5)
-  where_to_find('harmonic_minor', major_scale, chord_types[7:], 5)
+  where_to_find('harmonic_minor', harmonic_minor_scale, chord_types[0:2], 5)
+  where_to_find('harmonic_minor', harmonic_minor_scale, chord_types[2:7], 5)
+  where_to_find('harmonic_minor', harmonic_minor_scale, chord_types[7:], 5)
 
   scale_notes('major_pentatonic', major_pentatonic_scale, 6)
   scale_notes('major_blues', major_blues_scale, 7)
   scale_notes('minor_pentatonic', minor_pentatonic_scale, 8)
   scale_notes('minor_blues', minor_blues_scale, 9)
+
+  b = Bar()
+  b + "C"
+  b + "E"
+  b + "G"
+  b + "B"
+  bar = LilyPond.from_Bar(b)
+  print(bar)
+  # echo '{ \time 4/4 \key c \major c'4 e'4 g'4 b'4 }' | lilypond --png -o out.png -dpreview -#
+
+
 
   add_all_cards()
 
