@@ -3,14 +3,25 @@ import random
 from shared import *
 
 def main():
-  scales(0)
+  scales('major', major_scale, 0)
   chords4(1, 2, 3)
+
+  scales('major pentatonic', major_pentatonic_scale, 4)
+  scales('major blues', major_blues_scale, 5)
+  scales('minor pentatonic', minor_pentatonic_scale, 6)
+  scales('minor blues', minor_blues_scale, 7)
 
   add_all_cards()
 
-def scales(priority):
-  for n in notes:
-    add_play_card(n + ' scale', n + ' scale', priority)
+def scales(scale_name, scale, priority):
+  for base_i, n in enumerate(notes):
+    scale_notes = [ notes[(base_i + n)%12] for n in scale ]
+    a = ' | '.join(scale_notes)
+    q = n + ' ' + scale_name + ' scale'
+    q_id = q
+    if scale_name == 'major':
+      q_id = n + ' scale'
+    add_play_card(q_id, q, a, priority)
 
 def chords4(core_priority, sevenths_priority, complex_priority):
   for n in notes:
@@ -44,8 +55,8 @@ def chord_to_notes(s):
   
   return list(map(idx_to_note.get, chord_notes))
 
-def add_play_card(q_id, q, priority):
-  add_card(q_id, 'play ' + q, '', priority)
+def add_play_card(q_id, q, a, priority):
+  add_card(q_id, 'play ' + q, a, priority)
 
 def add_card(q_id, q, a, priority):
   card_priorities.setdefault(priority, [])

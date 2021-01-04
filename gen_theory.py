@@ -24,6 +24,11 @@ def main():
   where_to_find('harmonic_minor', major_scale, chord_types[2:7], 5)
   where_to_find('harmonic_minor', major_scale, chord_types[7:], 5)
 
+  scale_notes('major_pentatonic', major_pentatonic_scale, 6)
+  scale_notes('major_blues', major_blues_scale, 7)
+  scale_notes('minor_pentatonic', minor_pentatonic_scale, 8)
+  scale_notes('minor_blues', minor_blues_scale, 9)
+
   add_all_cards()
 
 def scale_diatonic(scale_name, scale, priority):
