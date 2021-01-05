@@ -31,17 +31,6 @@ def main():
   scale_notes('minor_pentatonic', minor_pentatonic_scale, 8)
   scale_notes('minor_blues', minor_blues_scale, 9)
 
-  b = Bar()
-  b + "C"
-  b + "E"
-  b + "G"
-  b + "B"
-  bar = LilyPond.from_Bar(b)
-  print(bar)
-  # echo '{ \time 4/4 \key c \major c'4 e'4 g'4 b'4 }' | lilypond --png -o out.png -dpreview -#
-
-
-
   add_all_cards()
 
 def scale_diatonic(scale_name, scale, priority):
@@ -75,6 +64,16 @@ def scale_notes(scale_name, scale, priority):
       note = notes[(base_i + n)%12]
       q = 'what note is the ' + str(i+1) + ' degree of ' + base + ' ' + scale_name + '?'
       add_card(q, q, '<br>'.join(note.split('/')), priority)
+
+def rhythm(pattern, priority):
+  b = Bar()
+  b + "C"
+  b + "E"
+  b + "G"
+  b + "B"
+  bar = LilyPond.from_Bar(b)
+  print(bar)
+  # echo '{ \time 4/4 \key c \major c'4 e'4 g'4 b'4 }' | lilypond --png -o out.png -dpreview -#
 
 # =================================================
 
